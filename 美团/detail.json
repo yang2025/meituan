@@ -1,0 +1,38 @@
+[
+{
+	"img":"images/qjd.jpg",
+	"name":"北京全聚德",
+	"state":"[天安门广场]精品烤鸭3-4人餐1份",
+	"price":"418元",
+	"oldPrice":"523元",
+	"num":"6230"
+},{
+	"img":"images/dzb.jpg",
+	"name":"掉香缘掉渣饼",
+	"state":"[西单]掉渣饼1份，提供免费WiFi",
+	"price":"7.9元",
+	"oldPrice":"10元",
+	"num":"35569"
+},{
+	"img":"images/hll.jpg",
+	"name":"好利来",
+	"state":"[北京等]【人气】蛋挞1份",
+	"price":"3元",
+	"oldPrice":"6元",
+	"num":"116230"
+},{
+	"img":"images/hls.jpg",
+	"name":"华莱士炸鸡汉堡",
+	"state":"[20店通用]鸡腿堡+薯条+中杯可乐1份",
+	"price":"13元",
+	"oldPrice":"31元",
+	"num":"17450"
+},{
+	"img":"images/zgy.jpg",
+	"name":"紫光园",
+	"state":"[北京等]小份炒疙瘩3选1",
+	"price":"9.99元",
+	"oldPrice":"15元",
+	"num":"8755"
+}
+]

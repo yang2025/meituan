@@ -1,0 +1,513 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+body {
+	font-size: 14px;
+	background: #f0efed;
+}
+.footer{
+	width: 100%;
+	height: 0.8rem;
+	background: white;
+	display: flex;
+	justify-content: space-around;
+	position: fixed;
+	bottom: -1px;
+}
+.footer a{
+	width: 25%;
+	text-align: center;
+	text-decoration: none;
+	color: #000000;
+	font-size: 0.5rem;
+	display: block;
+}
+.footer img{
+	width: 0.4rem;
+	height: 0.4rem;
+	display: block;
+	margin: 0 auto;
+}
+.footer span{
+	display: block;
+	font-size: 0.24rem;
+	margin-top: 0.1rem;
+}
+.header-top{
+	width: 100%;
+	height: 1.01rem;
+	line-height: 1.01rem;
+	background:linear-gradient(135deg, #FFD000 0%, #FFBD00 100%);
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+.address{
+	display: block;
+	width: 1.5rem;
+	padding-left: 0.4rem;
+	font-size: 0.32rem;
+	vertical-align: center;
+}
+.down{
+	width: 0.16rem;
+	height: 0.09rem;
+}
+.search{
+	width: 5rem;
+	height: 0.64rem;
+	background: white;
+	border-radius: 0.2rem;
+	line-height: 0.64rem;
+	color: #999999;
+	display: block;
+	text-decoration: none;
+}
+.search-img{
+	width: 0.28rem;
+	height: 0.28rem;
+	margin-left: 0.2rem;
+}
+.posi{
+	width: 0.94rem;
+	height: 100%;
+}
+.posi img{
+	width: 0.48rem;
+	height: 0.48rem;
+	display: block;
+	margin: 0.23rem auto 0.23rem;
+}
+.banner{
+	width: 100%;
+	height: 3.5rem;
+	display: flex;
+	flex-flow: row  wrap;
+	justify-content: space-around;
+	pading-top: 0.4rem;
+	background: white;
+}
+.banner-li{
+	width: 20%;
+	list-style: none;
+	text-align: center;
+	padding: 0.2rem 0;
+}
+.banner-img{
+	width: 0.8rem;
+	height: 0.8rem;
+	display: block;
+	margin: 0 auto;
+}
+.banner ul{
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+.idot{
+	width: 0.15rem;
+	height: 0.15rem;
+	background: #CCCCCC;
+	border-radius: 50%;
+	list-style: none;
+	margin: 0 0.15rem;
+}
+.active {
+	background: orangered;
+}
+.business{
+	padding: 0 0.2rem;
+	width: 100%;
+	box-sizing: border-box;
+	background: white;
+	margin-top: 0.3rem;
+}
+.detail{
+	width: 7.1rem;
+	height: 1.8rem;
+	margin-bottom: 0.2rem;
+	color: #000000;
+}
+.detail a{
+	display: block;
+	text-decoration: none;
+}
+.detail .avatar {
+	float: left;
+	margin-right: 0.2rem;
+}
+.detail .avatar img{
+	width: 1.8rem;
+	height: 1.75rem;
+}
+.detail .name{
+	padding-top: .1rem;
+	margin-bottom: .12rem;
+	font-size: .3rem;
+	font-weight: 400;
+	color: #333;
+}
+.detail .state{
+	font-size: .24rem;
+	height: .68rem;
+	margin-bottom: .16rem;
+	color: #666;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	overflow: hidden;
+}
+.detail .price{
+	font-size: .36rem;
+	color: orangered;
+}
+.detail .oldPaice{
+	font-size: .24rem;
+	color: #000000;
+}
+.detail .num{
+	float: right;
+	font-size: .24rem;
+	margin-top: 0.1rem;
+	color: #000000;
+}
+.cnxh{
+	padding: 0.2rem 0;
+	font-weight: normal;
+	font-size: .34rem;
+}
+.zz{
+	height: 0.8rem;
+	width: 100%;
+}
+.search-top{
+	width: 7.5rem;
+	height: 1.01rem;
+	color: #000000;
+	position: relative;
+}
+.search-top span{
+	display: block;
+	width: 70%;
+	text-align: center;
+	font-size: 0.36rem;
+}
+.xfz{
+	width: 0.48rem;
+	height: 0.48rem;
+}
+.jt{
+	width: 0.2rem;
+	height: 0.36rem;
+	margin-top: 0.1rem;
+	display: block;
+	margin-left: 0.2rem;
+}
+.search-center{
+	width: 7.5rem;
+	height: 1.2rem;
+	padding: 0.2rem;
+	background: #CCCCCC;
+	box-sizing: border-box;
+}
+.search-center span{
+	display: inline-block;
+	height: 0.8rem;
+	background: white;
+	width: 5.7rem;
+	vertical-align: center;
+	border-radius: 0.1rem;
+
+}
+.search-center img{
+	margin-top: 0.1rem;
+}
+.search-input{
+	width: 70%;
+    border: none;
+    background: rgba(255, 255, 255, 0);
+    outline-style: none;
+    display: inline-block;
+    line-height: .7rem;
+    height: 0.6rem;
+    font-size: .28rem;
+    padding: 0;
+	position: relative;
+	top:-0.1rem;
+}
+.search-center button{
+	width: 1.2rem;
+	height: 0.8rem;
+	display: inline-block;
+	position: relative;
+	top: -0.15rem;
+	left: 0.1rem;
+	font-size: 0.3rem;
+	border: none;
+}
+.assort{
+	width: 7.5rem;
+	height: 3rem;
+	background: white;
+	display: flex;
+	justify-content: space-around;
+	flex-flow: row wrap;
+}
+.assort li{
+	width: 25%;
+	list-style: none;
+	text-align: center;
+	font-size: 0.28rem;
+
+	margin-top:0.1rem;
+	height: 0.6rem;
+}
+.assort span{
+	display: block;
+	/* border-right: solid 1px #666666; */
+	height: 0.4rem;
+	line-height: 0.4rem
+}
+.detail-top {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	vertical-align: center;
+	background: #06c1ae;
+	color: white;
+	/* line-height: 1.01rem; */
+}
+.detail-top div{
+	height: 0.9rem;
+
+	margin: auto 0;
+	width: 30%;
+	display: flex;
+	font-size: 0.32rem;
+	justify-content: space-around;
+}
+.tg{
+	display: block;
+	line-height: 1.01rem;
+	/* margin-top: 0.3rem; */
+}
+.detail-top div img{
+	width: 0.42rem;
+	height: 0.42rem;
+}
+.detail-img{
+	width: 7.5rem;
+	height: 3.75rem;
+}
+.detail-dl dt{
+	height: 3.75rem;
+}
+.detail-span{
+	position: relative;
+	top:-1.5rem;
+	line-height: 0.6rem;
+	color: white;
+}
+.detail-name{
+	font-size: 0.32rem;
+}
+.detail-state{
+	font-size: 0.28rem;
+}
+.detail-dl dd:nth-child(2) {
+	height: 1rem;
+	width: 100%;
+	margin-top: 0.2rem;
+	display: flex;
+	justify-content: space-around;
+}
+.detail-dl dd:nth-child(2) div{
+	display: flex;
+	justify-content: space-around;
+	line-height: 1rem;
+}
+.detail-dl .ljqg{
+	height: 0.8rem;
+	width: 2.6rem;
+	margin: 0;
+	line-height: 0.8rem;
+	font-size: 0.4rem;
+	background: orange;
+	text-align: center;
+	border-radius: 0.1rem;
+}
+.detail-dl span{
+	display: block;
+}
+.detail-price{
+	font-size: 0.5rem;
+	color: red;
+}
+.detail-dl dd:nth-child(3){
+	vertical-align: center;
+	height: 0.8rem;
+	display: flex;
+	line-height: 0.8rem;
+	justify-content: space-around;
+}
+.detail-dl dd:nth-child(3) span{
+	vertical-align: center;
+	display: flex;
+	justify-content: space-around;
+}
+.detail-dl dd:nth-child(3) img{
+	display: block;
+	width: 0.5rem;
+	height: 0.5rem;
+}
+.isnige{
+	width: 150%;
+	height: 0.8rem;
+	margin-left: -0.5rem;
+}
+.isnige li{
+	list-style: none;
+	background: #000000;
+}
+.isnige li a{
+	color: white;
+}
+.submit-top{
+	width: 7.5rem;
+	height: 1.01rem;
+}
+.submit-top .jt{
+	margin-left: -1.5rem;
+}
+.submit-top span{
+	text-align: left;
+}
+.submit span{
+	font-size: 0.4rem;
+}
+.submit button ,.submit input,.order button ,.order input{
+	width: 0.4rem;
+	height: 0.4rem;
+	display: inline-block;
+}
+.goodsdetail p{
+    height: 1rem;
+    line-height: 1rem;
+}
+.goodsdetail p span:nth-child(2){
+    float: right;
+    display: inline-block;
+}
+.tjdd{
+	width: 3rem;
+	height: 1rem;
+	background: green;
+	color: red;
+	display: block;
+	font-size: 0.5rem;
+	text-align: center;
+	line-height: 1rem;
+	border-radius: 0.1rem;
+  margin: 0 auto;
+}
+.order li{
+	list-style: none;
+	height: 2.5rem;
+	margin-top: 0.3rem;
+}
+.order img{
+	width: 2rem;
+	height: 2rem;
+	display: block;
+	float: left;
+}
+.order span{
+	display: block;
+	font-size: 0.3rem;
+	margin-left: 0.1rem;
+}
+.zj{
+  /* width: 1rem; */
+  display: block;
+  height: 1rem;
+	position: sticky;
+	bottom:-0.2rem;
+  margint-left:70% ;
+	/* right: 0.2rem; */
+  float: right;
+  margin-bottom:0.5rem ;
+}
+.inputCheck{
+	float: left;
+	display: block;
+}
+.orderDetail{
+	float: left;
+	margin-left: 0.1rem;
+	width: 5rem;
+}
+.login input {
+  width: 4rem;
+  height: 0.8rem;
+  border-radius: 0.2rem;
+}
+.login span{
+  width: 2rem;
+  height: 0.8rem;
+  background: #FF4500;
+  border-radius: 0.2rem;
+  display: block;
+  margin: 0 auto;
+  line-height: 0.8rem;
+  text-align: center;
+}
+.login{
+  margin-top: 1rem;
+}
+.login p{
+  margin-left: 1rem;
+}
+.mine-top span{
+  background: none;
+}
+.mine-top  img{
+  display: block;
+  margin-right: 0.2rem;
+}
+.mine-name{
+  width: 7.5rem;
+  height: 1.6rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: #BBBBBB;
+}
+
+.mine-name img{
+  width: 1.2rem;
+  height: 1.2rem;
+  display: block;
+}
+.mine-name .yjt ,.mine-center .yjt{
+  width: 0.32rem;
+  height: 0.32rem;
+  display: block;
+}
+
+.mine-center span{
+  height: 1rem;
+    display: block;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.mine-center ul{
+  width: 7.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+.mine-center li{
+  width: 25%;
+  text-align: center;
+  list-style: none;
+}

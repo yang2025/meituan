@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>美团App</title>
+	<link rel="stylesheet" type="text/css" href="css/index.css"/>
+</head>
+<body>
+	<div id="app">
+		<router-view></router-view>
+		<!-- 底部路由导航 -->
+		<div class="footer" >
+			<router-link to="index">
+				<img src="images/index.png" />
+				<span>首页</span>
+			</router-link>
+			<router-link to="discover">
+				<img src="images/discover.png" />
+				<span>发现</span>
+			</router-link>
+			<router-link to="order">
+				<img src="images/order.png" />
+				<span>订单</span>
+			</router-link>
+			<router-link to="mine">
+				<img src="images/mine.png" >
+				<span>我的</span>
+			</router-link>
+		</div>
+	</div>
+	
+	<!-- 首页页面 -->
+	<template id="index">
+		<div class="index">
+			<header class="header-top">
+			 	<span class="address">
+					北京
+					<img class="down" src="images/down.png" />
+				</span>
+				<router-link to="/search">
+					<span class="search">
+					<img class="search-img" src="images/search.png" />
+						请输入商家名，品类或者商圈
+					</span>
+				</router-link>
+				<span class="posi"><img  src="images/posi.png" /></span>
+			</header>
+			<ul class="banner">
+				<li v-for="item in arr" class="banner-li">
+					<img :src="item.url"  class="banner-img"/>
+					<span>{{item.name}}</span>
+				</li>
+				<ul>
+					<li class="idot active"></li>
+					<li class="idot"></li>
+				</ul>
+			</ul>
+			<div class="business">
+				<h2 class="cnxh">猜你喜欢</h2>
+				<dl v-for="(item,index) in list" class="detail">
+					<router-link :to="{path:'/detail/'+item.name}" >
+						<dt class="avatar"><img :src="item.img" /></dt>
+						<dd class="name">{{item.name}}</dd>
+						<dd class="state">{{item.state}}</dd>
+						<dd>
+							<span class="price">{{item.price}}</span>
+							<span class="oldPaice">门市价:{{item.oldPrice}}</span> 
+							<span class="num">已售{{item.num}}</span>
+						</dd>
+					</router-link>
+				</dl>
+				<div class="zz"></div>
+			</div>
+		</div>
+	</template>
+	
+	<!-- 发现页面 -->
+	<template id="discover">
+		<div class="discover">
+			发现页面
+		</div>
+	</template>
+	
+	<!-- 订单页面 -->
+	<template id="order">
+		<div class="order">
+			<h2>订单列表</h2>
+			<input type="checkbox" v-model="allChecked" @click="allchange">
+			<ul>
+				<li v-for="(item,index) in  goodsList">
+					<input type="checkbox" :checked="checkedArr[index]" class="inputCheck" @change="change(index,$event)">
+					<img  :src="item.img" />
+					<div class="orderDetail">
+						<span>{{item.name}}</span>
+						<span>{{item.state}}</span>
+						<span>
+							<button @click="reduceorder(index,$event)">-</button>
+							<input type="text" :value="item.orderNum" />
+							<button @click="addorder(index,$event)">+</button>
+						</span>
+						<span>单价：{{item.price}}</span>
+						<span>总价：{{item.total}}</span>
+					</div>
+				</li>
+			</ul>
+			<span class="zj">总计:{{allTotal}}元</span>
+			<div class="zz"></div>
+		</div>
+	</template>
+	<template id="mine">
+		<div class="mine">
+			我的页面
+		</div>
+	</template>
+	<!-- 搜索页面 -->
+	<template id="search">
+		<div class="search">
+			<div class="header-top search-top">
+				<router-link to="/index">
+					<img class="jt" src="images/jt.png" />
+				</router-link>
+				<span>搜索</span>
+				<img class="xfz" src="images/right.png" />
+			</div>
+			<div class="search-center">
+				<span>
+					<img src="images/search.png" />
+					<input class="search-input" v-model="search" type="search" @focus="focus" @focusout="focusout" value="" placeholder="请输入商家名,商圈" />
+				</span>
+				<button type="button">搜索</button>
+			</div>
+			<ul v-show="isShow" class="assort">
+				<li v-for="item in assort">
+				<span>{{item}}</span> 
+				</li>
+			</ul>
+			<ul class="busList" v-show="isTrue" >
+				<li v-for="(item,index) in getgoods" @click="addgoods">
+					{{item}}
+				</li>
+			</ul>
+		</div>
+	</template>
+	
+	
+	<!-- 详情页面 -->
+	<template id="detail">
+		<div class="detail">
+			<header class="search-top detail-top">
+				<router-link to="/index">
+					
+				<img class="jt" src="images/jt.png" />
+				</router-link>
+				<span class="tg">团购详情</span>
+				<div>
+					<span>
+						<img src="images/collect.png" />
+						<p>收藏</p>
+					</span>
+					<span @click="nige">
+						<img src="images/navigate.png"/ >
+						<p>导航</p>
+						<ul class="isnige" v-show="isnige">
+							<li>
+								<router-link to="/index">
+									<img src="images/index.png" />首页
+								</router-link>
+							</li>
+							<li>
+								<router-link to="/mine">
+									<img src="images/mine.png" />我的
+								</router-link>
+							</li>
+						</ul>
+					</span>
+				</div>
+			</header>
+			<dl v-for="item in showArr" class="detail-dl">
+				<dt>
+					<img class="detail-img" :src="item.img" />
+					<span class="detail-span">
+						<p class="detail-name">{{item.name}}</p>
+						<p class="detail-state">{{item.state}}</p>
+					</span>
+				</dt>
+				<dd>
+					<div>
+						<span class="detail-price">{{item.price}}</span>
+						<span class="detail-old">门市价：{{item.oldPrice}}</span>
+					</div>
+					<span class="ljqg">
+						<router-link :to="{path:'/submit/'+item.name}">
+							立即抢购
+						</router-link>
+					</span>
+				</dd>
+				<dd>
+					<span>
+						<img src="images/payfor.png" />
+						支持随时退款
+					</span>
+					<span>
+						<img src="images/success.png" />
+						支持过期自动退
+					</span>
+				</dd>
+				<dd>
+					<span>已售{{item.num}}</span>
+				</dd>
+			</dl>
+		</div>
+	</template>
+	
+	<!-- 提交订单 -->
+	<template id="submit">
+		<div class="submit">
+			<header class="detail-top submit-top">
+				<router-link to="/index">
+					<img class="jt" src="images/jt.png" />
+				</router-link>
+				<span >提交订单</span>
+			</header>
+			<div  v-for="(item,index) in submitList">
+				<p>{{item.state}}</p>
+				<p><span>单价</span> <span>{{price}}元</span> </p>
+				<p>
+					<span>数量</span>
+					<span>
+						<button @click="reduce">-</button>
+						<input type="text" v-model="orderNum">
+						<button @click="add">+</button>
+					</span>
+				</p>
+				<p><span>总价</span><span>{{total}}元</span> </p>
+			</div>
+			<span class="tjdd" @click="tjdd">提交订单</span>
+		</div>
+	</template>
+</body>
+<script src="../../vue.js"></script>
+<script src="../../vue-router.js"></script>
+<script src="axios.js"></script>
+<script type="text/javascript">
+	
+	
+	//首页数据
+	let index={
+		template:"#index",
+		data(){
+			return {
+				arr:[],
+				list:[],
+			}
+		},
+		mounted(){
+			//获取轮播
+			axios.get("http://localhost:8080/getBanner").then((res)=>{
+				// console.log(res)
+				this.arr = res.data
+			})
+			
+			//获取商家
+			axios.get("http://localhost:8080/getShow").then((res)=>{
+				// console.log(res)
+				this.list = res.data
+			})
+		},
+		methods:{
+		}
+	}
+	
+	//发现数据
+	let discover={
+		template:"#discover"
+	}
+	
+	//订单数据
+	let order={
+		template:"#order",
+		data(){
+			return {
+				goodsList:[],
+				allTotal:0,
+				checkedArr:[],
+				allChecked:false
+			}
+		},
+		mounted(){
+			axios.get("http://localhost:8080/getGoods").then((res)=>{
+				// console.log(res)
+				this.goodsList = res.data
+				this.all()
+				for(let i=0; i<this.goodsList.length;i++){
+					this.checkedArr.push(false)
+				}
+			})
+		},
+		methods:{
+			//数量增加
+			addorder(i,e){
+				this.goodsList[i].orderNum++
+				this.goodsList[i].total = this.goodsList[i].orderNum * Number(this.goodsList[i].price)
+				this.goodsList[i].total =  Math.floor(this.goodsList[i].total * 100) / 100
+				// console.log(this.goodsList[i].total)	
+				this.all()
+			},
+			//数量减少
+			reduceorder(i,e){
+				this.goodsList[i].orderNum--
+				if(this.goodsList[i].orderNum <=1){
+					this.goodsList[i].orderNum =1
+					// this.goodsList.splice(i,1)
+					// axios({
+					// 	method:"get",
+					// 	url:"http://localhost:8080/delgoods",
+					// 	params:{name:this.goodsList[i].name}
+					// })
+				} 
+				this.goodsList[i].total = this.goodsList[i].orderNum * Number(this.goodsList[i].price)
+				this.goodsList[i].total =  Math.floor(this.goodsList[i].total * 100) / 100
+				// console.log(this.goodsList[i].total)	
+				this.all()
+			},
+			//计算总价
+			all(){
+				this.allTotal = 0
+				this.checkedArr.map((item,index)=>{
+					if(item==true){
+						this.allTotal += Number(this.goodsList[index].total)
+						this.goodsList[index].total =  Math.floor(this.goodsList[index].total * 100) / 100
+					}
+				})
+			},
+			//改变input框状态
+			change(i,e){
+				if(this.checkedArr[i]==false){
+					this.checkedArr.splice(i,1,true)
+				} else  if(this.checkedArr[i] == true){
+					this.checkedArr.splice(i,1,false)
+				}
+				this.all()
+				// let bool=this.checkedArr.map((item,index)=>{
+				// 	if(item == false){
+				// 		return false
+				// 	}else if(item == true){
+				// 		return true
+				// 	}
+				// })
+				// console.log(bool)
+				// this.allChecked = bool
+				if(this.checkedArr.indexOf(false)!=-1){
+					this.allChecked = false
+				}else{
+					this.allChecked = true
+				}
+			},
+			//全选全不选
+			allchange(){
+				if(this.allChecked==false){
+					this.allChecked=true
+					this.checkedArr.forEach((ele,index)=>{
+						this.checkedArr.splice(index,1,true)
+					})
+				}else if(this.allChecked==true){
+					this.allChecked=false
+					this.checkedArr.forEach((ele,index)=>{
+						this.checkedArr.splice(index,1,false)
+					})
+				}
+				this.all()
+			}
+		}
+	}
+	let mine={
+		template:"#mine"
+	}
+	
+	//搜索组件 
+	let search={
+		template:"#search",
+		data(){
+			return {
+				search:"",
+				isShow:true,
+				isTrue:false,
+				assort:["周边热门","自助餐","酒店","电影","火锅",
+					"烤肉","KTV","运动健身","游泳","西餐","美容美体","日韩料理"
+				],
+				businessList:["北京全聚德","北京掉香缘掉渣饼","北京华莱士炸鸡汉堡","北京好利来","北京紫光园"]
+			}
+		},
+		methods:{
+			focus(){
+				this.isShow=false
+				this.isTrue=true
+			},
+			focusout(){
+				if(this.search ==""){
+					this.isShow=true
+					this.isTrue=false
+				}
+			},
+			addgoods(e){
+				if(e.target.localName === 'li'){
+				   this.search = e.target.innerText
+				   this.isShow=true
+				   this.isTrue=false
+				}
+			}
+		},
+		computed:{
+			getgoods(){
+				if(this.search){
+					let newArr = this.businessList.filter((item)=>{
+						if(item.includes(this.search)){
+							return item
+						}
+					})
+					return newArr
+				}else{
+					return []
+				}
+			}
+		}
+	}
+	//详情页面
+	let detail={
+		template:"#detail",
+		data(){
+			return {
+				term:"",
+				showArr:[],
+				isnige:false
+			}
+		},
+		
+		mounted () {
+			// console.log(this.$route.params)
+			this.term=this.$route.params.item
+			axios({
+				method:"get",
+				url:"http://localhost:8080/getDetail",
+				params:{name:this.term}
+			}).then((res)=>{
+				// console.log(res)
+				this.showArr = res.data
+			})
+		},
+		methods:{
+			nige(){
+				if(this.isnige == true){
+					this.isnige =false
+				}else if(this.isnige == false){
+					this.isnige =true
+				}
+			}
+		}
+	}
+	
+	//提交订单
+	let sublitorder = {
+		template:"#submit",
+		data(){
+			return {
+				orders:"",
+				submitList:[],
+				orderNum:1,
+				price:"",
+				total:"",
+				obj : {}
+			}
+		},
+		mounted (){
+			// console.log(this.$route.params)
+			this.orders = this.$route.params.item
+			axios({
+				method:"get",
+					url:"http://localhost:8080/getDetail",
+					params:{name:this.orders}
+				}).then((res)=>{
+				// console.log(res)
+				this.submitList = res.data
+				this.obj = res.data[0]
+				this.price = res.data[0].price.slice(0,-1)
+				this.total = res.data[0].price.slice(0,-1)
+				// console.log(this.obj)
+			})
+		},
+		methods:{
+			add(){
+				this.orderNum++
+				this.total = this.orderNum * Number(this.price)
+				this.total =  Math.floor(this.total * 100) / 100
+				// console.log(this.total)	
+			},
+			reduce(e){
+				// console.log(e.target)
+				this.orderNum--
+				if(this.orderNum <=1){
+					this.orderNum =1
+				} 
+				this.total = Number(this.orderNum) * Number(this.price)
+				console.log("11")
+				console.log( Math.floor(this.total * 100) / 100 )
+				this.total =  Math.floor(this.total * 100) / 100 
+				console.log(this.total)	
+			},
+			tjdd(){
+				let obj ={}
+				// console.log(this.submitList[0])
+				obj.name = this.submitList[0].name
+				obj.orderNum = this.orderNum
+				obj.total = this.total
+				obj.price = this.price
+				obj.state = this.submitList[0].state
+				obj.img = this.submitList[0].img
+				obj.checked=false
+				axios({
+					method:"get",
+					url:"http://localhost:8080/addGoods",
+					params:obj
+				}).then((res)=>{
+					console.log(res)
+					if(res.data.success){
+						alert(res.data.success)
+					}
+				})
+			}
+			
+		}
+	}
+	
+	
+	//配置路由文件
+	let routes=[{
+		path:"/index",
+		component:index
+	},{
+		path:"/discover",
+		component:discover
+	},{
+		path:"/order",
+		component:order
+	},{
+		path:"/mine",
+		component:mine
+	},{
+		path:"*",
+		redirect:"/index"
+	},{
+		path:"/search",
+		component:search
+	},{
+		path:"/detail/:item",
+		component:detail
+	},{
+		path:"/submit/:item",
+		component:sublitorder
+	}]
+	
+	let router =new VueRouter({
+		routes
+	})
+	
+	new Vue({
+		el:"#app",
+		data:{
+			isView:true
+		},
+		router,
+		methods:{
+			
+		}
+	})
+</script>
+<script type="text/javascript">
+	(function(doc, win) {
+		var docEl = doc.documentElement,
+			resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+			recalc = function() {
+				var clientWidth = docEl.clientWidth;
+				if (!clientWidth) return;
+				if (clientWidth >= 750) {
+					docEl.style.fontSize = '100px';
+				} else {
+					docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+				}
+			};
+		if (!doc.addEventListener) return;
+		win.addEventListener(resizeEvt, recalc, false);
+		doc.addEventListener('DOMContentLoaded', recalc, false);
+	})(document, window);
+</script>
+</html>
